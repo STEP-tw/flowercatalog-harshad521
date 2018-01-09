@@ -25,7 +25,6 @@ const getContentType = function(fileExtension){
 };
 
 const storeDataInJsVariable = function(data){
-  console.log("in");
   let filename = "./public/js/guestBookDatabase.js";
   let dataToBeSent = `var data = ${JSON.stringify(data,null,2)}`;
   fs.writeFileSync(filename,dataToBeSent);
@@ -65,11 +64,11 @@ let redirectToIndexPage = (req,res)=>{
 }
 
 let redirectLoggedInUserToGuestBook = (req,res)=>{
-  if(req.url=='/login' && req.user) res.redirect('/guestBook.html');
+  if(req.url=='/login' && req.user) res.redirect('/index.html');
 }
 
-let redirectLoggedOutUserToLogin = (req,res)=>{
-  if(req.urlIsOneOf(['/','/guestBook.html','/logout']) && !req.user) res.redirect('/login');
+let redirectLoggedOutUserToIndex = (req,res)=>{
+  if(req.url=='/logout' && !req.user) res.redirect('/index.html');
 }
 
 const cookieParse = function(cookies){
@@ -104,7 +103,18 @@ const storeComment = function(req){
   return;
 };
 
+const redirectIfNotLoggedIn = function(req,res) {
+  let user = registered_users.find(u=>u.userName==req.body.userName);
+  if(!user){
+    res.redirect('/login');
+  }
+}
+
 const handleStoreDataReq = function(req,res){
+  if(!req.user){
+    res.redirect('/login');
+    return;
+  }
   storeComment(req);
   res.redirect('/guestBook.html');
   res.end();
@@ -113,11 +123,11 @@ const handleStoreDataReq = function(req,res){
 
 let app = WebApp.create();
 
+app.use(redirectToIndexPage);
 app.use(logRequest);
 app.use(loadUser);
 app.use(redirectLoggedInUserToGuestBook);
-app.use(redirectLoggedOutUserToLogin);
-app.use(redirectToIndexPage);
+app.use(redirectLoggedOutUserToIndex);
 app.useAfter(handleStaticFileReq);
 
 app.get('/login',(req,res)=>{
@@ -136,7 +146,7 @@ app.post('/login',(req,res)=>{
   let sessionid = new Date().getTime();
   res.setHeader('Set-Cookie',`sessionid=${sessionid}`);
   user.sessionid = sessionid;
-  res.redirect('/guestBook.html');
+  res.redirect('/index.html');
 });
 
 app.post('/storeData',(req,res)=>{

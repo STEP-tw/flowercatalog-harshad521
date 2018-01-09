@@ -11,9 +11,9 @@
       <center>
         <h1 class="guestBook"><a  class="guestBook" href="/index.html"> << </a>Guest Book</h1>
       </center>
-      <h2>Leave a comment</h2>
+      <h2 id="commentForm">Leave a comment</h2>
       <div class="comments">
-        <form id="frm1"  action="/storeData" method="POST">
+        <form id="frm1"  action="/storeData" method="POST" id="commentForm">
           Name: <input type="text" name="name" required><br>
           Comment:<textarea name="comment" rows="4" cols="50" required></textarea >
           <br><br>

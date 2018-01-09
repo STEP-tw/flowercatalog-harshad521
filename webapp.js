@@ -7,8 +7,9 @@ const accumulate = (o,kv)=> {
   return o;
 };
 const parseBody = text=> text && text.split('&').map(toKeyValue).reduce(accumulate,{}) || {};
+
 let redirect = function(path){
-  //console.log(`redirecting to ${path}`);
+  console.log(`redirecting to ${path}`);
   this.statusCode = 302;
   this.setHeader('location',path);
   this.end();

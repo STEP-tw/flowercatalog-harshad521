@@ -1,6 +1,4 @@
 const generateTable = function() {
-  console.log(data);
-  console.log("hi");
   var table = document.getElementById("commentsTable");
   data.map(function(element,index){
     let row = table.insertRow(index);
