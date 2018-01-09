@@ -1,0 +1,72 @@
+h1 {
+  font-size: 80px;
+}
+
+.homepageHeading{
+  margin-left: 1000px;
+}
+
+.imageBox{
+  margin-left: 20px;
+  height: 600px;
+  width: 700px;
+  float: left;
+  padding-left: 20px;
+}
+.imageBox1{
+  margin-left: 20px;
+  height: 400px;
+  width: 400px;
+  float: left;
+  padding-left: 20px;
+}
+
+.imageBlock{
+  margin-left: 170px;
+}
+
+.gifImage{
+  padding-left: 70px;
+  height: 10%;
+  width:10%;
+}
+.image{
+  height: 100%;
+  width:100%;
+}
+
+.guestBook{
+  margin-top: 100px;
+}
+.textBox{
+  margin-top: 150px;
+  margin-left: 50px;
+  float:left;
+  width: 900px;
+  height: 300px;
+}
+li{
+  font-size: 30px;
+  margin-left: 950px;
+}
+
+.anchor{
+  margin-top: 500px;
+  margin-left: 50px;
+}
+td{
+  width :200px;
+  align:center;
+  margin-left: 100px;
+  padding-left: 0px;
+}
+a{
+  font-size: 20px;
+}
+.links{
+  margin-top: 300px;
+}
+
+.guestBook{
+  font-size: 40px;
+}
