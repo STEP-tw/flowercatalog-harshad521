@@ -11,7 +11,7 @@
       <center>
         <h1 class="guestBook"><a  class="guestBook" href="/index.html"> << </a>Guest Book</h1><h3 id="userNameLabel"></h3>
       </center>
-      <h2>Leave a comment</h2>
+      <h2 id="heading">Leave a comment</h2>
       <div class="comments">
         <form id="frm1"  action="/storeData" method="POST">
           Name: <input type="text" name="name" required><br>
@@ -19,6 +19,7 @@
           <br><br>
           <input type="submit" value="Submit" >
         </form>
+        <a id ="login" href="/login">Login</a>
         <hr />
         <p style="font-size:20px">DATETIME_NAMES_COMMENT_LIST</p>
         <table id="commentsTable"></table>
