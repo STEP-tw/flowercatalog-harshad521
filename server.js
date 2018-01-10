@@ -2,7 +2,7 @@ let fs = require('fs');
 const timeStamp = require('./time.js').timeStamp;
 const http = require('http');
 const WebApp = require('./webapp');
-let registered_users = [{userName:'harshad',name:'Harshad Vijay Thombare'}];
+let registered_users = [{userName:'harshad',name:'Harshad Vijay Thombare',password:'ht1234'}];
 
 const getRecords = function() {
   let commentInformation = fs.readFileSync("./data/comments.json","utf8");
@@ -133,12 +133,18 @@ app.useAfter(handleStaticFileReq);
 app.get('/login',(req,res)=>{
   res.setHeader('Content-type','text/html');
   if(cookieParse(req.cookies)) res.write('<p>logIn Failed</p>');
-  res.write('<form method="POST"> <input name="userName"><input name="place"> <input type="submit"></form>');
+  res.write(` <center>
+    <h4><a href="index.html"> << </a>Login</h4>
+    <form method="POST">
+      Name : <input  name="userName"> <br> <br>
+      Password : <input type="password" name="password"> <br> <br>
+      <input type="submit">
+    </form>`);
   res.end();
 });
 
 app.post('/login',(req,res)=>{
-  let user = registered_users.find(u=>u.userName==req.body.userName);
+  let user = registered_users.find(u=>u.userName==req.body.userName && u.password==req.body.password);
   if(!user) {
     res.setHeader('Set-Cookie',`loginFailed=true`);
     res.redirect('/login');
