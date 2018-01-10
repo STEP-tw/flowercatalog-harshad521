@@ -136,6 +136,7 @@ app.get('/login',(req,res)=>{
   res.write('<form method="POST"> <input name="userName"><input name="place"> <input type="submit"></form>');
   res.end();
 });
+
 app.post('/login',(req,res)=>{
   let user = registered_users.find(u=>u.userName==req.body.userName);
   if(!user) {
@@ -159,7 +160,15 @@ app.get('/logout',(req,res)=>{
   res.redirect('/login');
 });
 
+app.get('/userName',(req,res)=>{
+  req.user && res.write(req.user.name);
+  res.end();
+});
+
 const PORT = 5000;
+
 let server = http.createServer(app);
+
 server.on('error',e=>console.error('**error**',e.message));
+
 server.listen(PORT,(e)=>console.log(`server listening at ${PORT}`));

@@ -65,6 +65,7 @@ const main = function(req,res){
   let content="";
   req.on('data',data=>content+=data.toString())
   req.on('end',()=>{
+    console.log(parseBody(content));
     req.body = parseBody(content);
     content="";
     this._preprocess.forEach(middleware=>{
